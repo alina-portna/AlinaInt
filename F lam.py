@@ -1,27 +1,20 @@
-# Функция La была создана для отражения на графике.
-# Значения list_x и  angles стоит менять внутри функции.
-# При запуске программы ввести в поле: La(x)
-def La(x):
-    list_x = [0, 40, 50, 60, 70, 80, 90, 100]
-    angles = [0, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3]
-    list_y = points(list_x, angles)
-    if x < list_x[-1]:
-        a = find_interval(list_x, x)
-        y = (x - list_x[a])*(list_y[a+1] - list_y[a])/(list_x[a+1] - list_x[a]) + list_y[a]
-    else:
-        y = list_y[-1] + angles[-1]*(x - list_x[-1])
-    return(y)
+list_x_popul = [0, 40, 50, 60, 70, 80, 90, 100]
+angles_popul = [1, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3]
+x = 75
 
-#print(find_interval(list_x_popul, x))
-
-
+""" Lam задает кусочно ломаную функцию, которая проходит через все точки из list_x
+и соединяет каждую пару (list_x[i-1], list_x[i]) отрезком прямой, которая имеет угол наклона angles[i]
+Lam возвращает значение этой функции в точке x.
+Предполагается использовать функцию для популярности и рейтинга пользователя в местах."""
 def Lam(list_x, angles, x):
     list_y = points(list_x, angles)
-    if x < list_x[-1]:
+    if x > list_x[-1]:
+        y = list_y[-1] + angles[-1] * (x - list_x[-1])
+    elif x <= list_x[0]:
+        y = angles[0]*x + list_x[0]
+    else:
         a = find_interval(list_x, x)
         y = (x - list_x[a])*(list_y[a+1] - list_y[a])/(list_x[a+1] - list_x[a]) + list_y[a]
-    else:
-        y = list_y[-1] + angles[-1]*(x - list_x[-1])
     return(y)
 
 def points(list_x, angles):
@@ -45,11 +38,26 @@ def find_interval(list_x, x):
     return a
 # x is in interval [a, a+1]
 
-list_x_popul = [0, 60, 80, 100, 120]
-angles_popul = [0, 1, 0.8, 0.7, 0.5, 0.3]
-x = 250
 print(points(list_x_popul, angles_popul))
 print(Lam(list_x_popul, angles_popul, x))
+#print(find_interval(list_x_popul, x))
+
+
+
+# Функция La такая же как и Lam, была лишь немного изменена чтобы можно было отразить ее на графике.
+# Чтобы увидить график функции - при запуске программы ввести: La(x)
+def La(x):
+    list_x = [0, 40, 50, 60, 70, 80, 90, 100]
+    angles = [1, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3]
+    list_y = points(list_x, angles)
+    if x > list_x[-1]:
+        y = list_y[-1] + angles[-1] * (x - list_x[-1])
+    elif x <= list_x[0]:
+        y = angles[0] * x + list_x[0]
+    else:
+        a = find_interval(list_x, x)
+        y = (x - list_x[a]) * (list_y[a + 1] - list_y[a]) / (list_x[a + 1] - list_x[a]) + list_y[a]
+    return (y)
 
 
 from math import *
