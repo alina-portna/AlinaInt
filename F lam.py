@@ -92,9 +92,7 @@ for i in range(16000):
 canv.pack()
 root.mainloop()
 
-
-
-
+"""очередная попытка закомитить"""
 
 
 
