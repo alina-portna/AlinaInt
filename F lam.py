@@ -18,12 +18,21 @@ def Lam(list_x, angles, y0, x):
         y = (x - list_x[a])*(list_y[a+1] - list_y[a])/(list_x[a+1] - list_x[a]) + list_y[a]
     return(y)
 
+
+
+
 def points(list_x, angles, y0):
     y = [y0]
     for i in range(1,len(list_x)):
         new = y[i-1] + angles[i]*(list_x[i] - list_x[i-1])
         y.append(new)
     return(y)
+
+"""
+x = [0, 40, 50, 60, 70, 80, 90, 100, 140, 160, 180, 200, 1000, 5000]
+y = [1, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.01, 0.005, 0.001]
+print(points(x, y, 0))
+"""
 
 def find_interval(list_x, x):
     a = 0
@@ -42,8 +51,6 @@ def find_interval(list_x, x):
 #print(points(list_x_popul, angles_popul, y0))
 #print(Lam(list_x_popul, angles_popul, y0, x))
 #print(find_interval(list_x_popul, x))
-
-
 
 # Функция La такая же как и Lam, была лишь немного изменена чтобы можно было отразить ее на графике.
 # Чтобы увидить график функции - при запуске программы ввести: La(x)
@@ -78,6 +85,7 @@ vwp возвращает вес голоса для голосования в М
 """
 def vwp(x):
     list_x = [0, 50, 100, 150, 200, 250, 300, 350]
+    # для настоящего рейтинга изменить на list_x = [0, 5, 10, 15, 20, 25, 30, 35]
     """
     list_x = []
     for i in range(0, 10):
@@ -97,6 +105,7 @@ def vwp(x):
     """
 
     y0 = 10
+    # для настоящего рейтинга изменить на y0 = 1
     list_y = points(list_x, angles, y0)
     if x >= list_x[-1]:
         y = list_y[-1] + angles[-1] * (x - list_x[-1])
@@ -110,8 +119,22 @@ def vwp(x):
         return (y)
     else:
         return(50)
+"""
+print(vwp(1))
+print(vwp(3))
+print(vwp(5))
+print(vwp(15))
+print(vwp(35))
+print(vwp(55))
+print(vwp(85))
+"""
 
-print(vwp(1000))
+
+
+
+
+
+
 
 
 # Lam_by_2str строит функцию по набору точек с заданными координатами
